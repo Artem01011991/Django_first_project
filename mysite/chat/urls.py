@@ -1,10 +1,11 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 from django.contrib.auth.views import login
 
 
+app_name = 'chat'
 urlpatterns = [
-    url(r'^$', views.registration_page, name='registration_page'),
-    url(r'^userpage/$', views.user_page, name='userpage'),
-    url(r'login/$', login, {'template_name': 'chat/log-in.html'}, name='login'),
+    path('', views.registration_page, name='registration_page'),
+    path('userpage/', views.user_page, name='userpage'),
+    path('login/', login, {'template_name': 'chat/log-in.html'}, name='login'),
 ]

@@ -18,7 +18,7 @@ def registration_page(request):
 
             return redirect('/userpage/')
     # Whether user have authenticated already
-    elif request.user.is_authenticated():
+    elif request.user.is_authenticated:
 
         return redirect('/userpage/')
     # Blank form have been passed
@@ -40,11 +40,11 @@ def user_page(request):
     if 'logout' in request.GET:
         logout(request)
 
-        return redirect(r'login/')
+        return redirect('/login/')
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
 
-        return redirect(r'login/')
+        return redirect('/login/')
 
     form = UserPageForm(instance=request.user)
 
