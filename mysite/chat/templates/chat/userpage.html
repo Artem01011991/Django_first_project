@@ -4,6 +4,7 @@
     <title>User page</title>
 {% endblock %}
 {% block body %}
+{% if user.is_authenticated %}
 <nav class="navbar sticky-top " style=" background:rgba(255, 153, 51, 0.8);">
     <div class="dropdown">
         <button class="btn  dropdown-toggle" style="background:rgba(255, 153, 51, 0.1)" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Menu</button>
@@ -14,25 +15,29 @@
         </div>
     </div>
 </nav>
+{% endif %}
 <div class="container col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
     <div class="row-center">
         <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-11 rounded" style="background:rgba(255, 153, 51, 0.8);padding:1px;margin:10px">
             <form enctype="multipart/form-data" method="post" class="">
             {% csrf_token %}
                 <label class="btn">
-                    {% if user.useraccount.user_photo %}
-                    <img src="{{ user.useraccount.user_photo.url }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 image-fluid" style="padding: 0px">
+                    {% if url_photo.user_photo %}
+                    <img src="{{ url_photo.user_photo.url }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 image-fluid" style="padding: 0px">
                     {% else %}
-                    <img src="{% static 'chat/user_photo.jpg' %}" alt="static err" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 image-fluid">
+                    <img src="{% static 'chat/user_photo.jpg' %}" alt="photo not found" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 image-fluid">
                     {% endif %}
+                    {% if user.is_authenticated %}
                     <input type="file" name="user_photo" id="id_user_photo" required="" hidden>
+                    <button class="btn btn-block" type="submit">send</button>
+                    {% endif %}
+
                 </label>
-                <button class="btn btn-block" type="submit">send</button>
             </form>
             <a class="btn btn-block" data-toggle="collapse" data-target="#about" style="font: icon" >About me<span class="caret"></span></a>
-            <div id="about" class="collapse"><ul><li>Name</li><li>Last name</li><li>summery</li></ul></div>
+            <div id="about" class="collapse"><ul><li>{{ user.first_name }}</li><li>{{ user.last_name }}</li><li>summery</li></ul></div>
             <a class="btn btn-block" data-toggle="collapse" data-target="#contacts" style="font: icon" >Contacts<span class="caret"></span></a>
-            <div id="contacts" class="collapse"><ul><li>Phone</li><li>Web messanger</li><li>Mail</li></ul></div>
+            <div id="contacts" class="collapse"><ul><li>Phone</li><li>Web messanger</li><li>{{ user.email_address }}</li></ul></div>
         </div>
     </div>
 </div>

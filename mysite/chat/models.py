@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 
 class UserAccount(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     user_photo = models.ImageField(upload_to='userphoto/')
 
 

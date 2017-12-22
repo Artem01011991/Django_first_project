@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/userpage/'
+LOGIN_REDIRECT_URL = 'chat:registration_page'
 
 
 # Internationalization
