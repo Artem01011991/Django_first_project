@@ -3,67 +3,76 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head lang="en-US">
-        <meta charset="UTF-8">
-        <!-- For mobile devises -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8" />
+  <!-- For mobile devises -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 {% block title %}
-        <title>Registration page</title>
+  <title>Registration page</title>
 {% endblock %}
-        <!-- Bootstrap stylesheet -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{% static 'chat/bg_video.css' %}">
-        <link rel="stylesheet" href="{% static 'chat/reg_page.css' %}">
+<link rel="stylesheet" href="{% static 'chat/bg_video.css' %}" />
+<link rel="stylesheet" href="{% static 'chat/reg_page.css' %}" />
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
 </head>
-    <body>
-        <div class="fullscreen-bg">
-            <video autoplay="" loop="" poster="" class="fullscreen-bg__video" src="http://static.videezy.com/system/resources/previews/000/000/328/original/bokeh2.mp4">
-            </video>
-        </div>
+<body>
+  <div class="fullscreen-bg">
+        <video autoplay="" loop="" poster="" class="fullscreen-bg__video" src="http://static.videezy.com/system/resources/previews/000/000/328/original/bokeh2.mp4">
+        </video>
+  </div>
 {% block body %}
-        <div class="container col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-6">
-            <div class="row">
-                <div class="col col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-8 rounded" style="padding: 10px; margin:100px; background: rgba(255, 153, 51, 0.7)" >
-                    <h1 class="text-center display-4" style="color:#0040ff;">Registration</h1>
-                    <hr>
-                    <div class="col">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                {% csrf_token %}
-                                {% if form.username.errors %}
-                                <div class="alert alert-danger">{{ form.username.errors }}</div>
-                                {% endif %}
-                                <input type="text" placeholder="Enter username" class="form-control" name="username" maxlength="150" required="" id="id_username">
-                                <br>
-                                <input type="password" placeholder="Enter password" class="form-control" name="password1" required="" id="id_password1">
-                                <br>
-                                {% if form.password2.errors %}
-                                <div class="alert alert-danger">{{ form.password2.errors }}</div>
-                                {% endif %}
-                                <input type="password" placeholder="Enter password again" class="form-control" name="password2" required="" id="id_password2">
-                                <br>
-                                <button type="submit" class="btn btn-block" style="background: #0040ff; font-family: 'Titillium Web', sans-serif; font-size: 20px; color: rgba(255, 153, 51, 0.7)">Sign up</button>
-                            </div>
-                        </form>
-                        <div class="row" style="float: right;">
-                            <label class="text" style="font-family: 'Titillium Web', sans-serif;color: #f2f2f2;">Already have an account?</label>
-                            <a href="{% url 'chat:login' %}" style="font-family: 'Titillium Web', sans-serif;">Sign in</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-          <div class="disp_all_users">
-              <!--displaying all registered users-->
-              {% for username in users_names %}
-              <a href="/userpage/{{ username.user.id }}">{{ username.user.first_name }}
-              {% endfor %}
-          </div>
+<!-- main section (registration table) -->
+  <section class="reg_table">
+    <div class="reg_table">
+      <table style="width: 100%;">
+        <caption>Registration</caption>
+        <tbody>
+          <form action="" method="post">
+            {% csrf_token %}
+            <tr>
+              <td>
+                {% if form.username.errors %}
+                <span>{{ form.username.errors }}</span>
+                {% endif %}
+                <input type="text" placeholder="Enter username" name="username" maxlength="150" required="required" id="id_username" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="password" placeholder="Enter password" name="password1" required="required" id="id_password1" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {% if form.password2.errors %}
+                <span>{{ form.password2.errors }}</span>
+                {% endif %}
+                <input type="password" placeholder="Enter password again" name="password2" required="required" id="id_password2" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="email" placeholder="Enter email" name="email" required="required" id="id_email" />
+              </td>
+            </tr>
+            <tr>
+              <td class="sub_form_td" style="display: flex; justify-content: center;">
+                <input type="submit" value="Sign up" />
+                <a href="{% url 'chat:login' %}">or to login</a>
+              </td>
+            </tr>
+            </form>
+        </tbody>
+      </table>
+    </div>
+     <!-- displaying all registered users -->
+    <div class="disp_all_users">
+      {% for username in users_names %}
+      <a href="/userpage/{{ username.user.id }}">{{ username.user.first_name }}</a>  
+      {% endfor %}
+    </div>
+  </section>
 {% endblock %}
-    </body>
+</body>
 </html>

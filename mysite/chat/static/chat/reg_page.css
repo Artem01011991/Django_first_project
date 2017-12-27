@@ -1,4 +1,118 @@
-div.disp_all_users {
-  float: right;
+@import {
+  url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+@keyframes input_shadow {
+  from{box-shadow: 0 0 #1a09e8 ,6px 6px 30px -12px #1a09e8 inset, -6px -6px 30px -14px #1a09e8 inset}
+  to{box-shadow: 0 6px 30px -10px #1a09e8, 6px 6px 30px -12px #1a09e8 inset, -6px -6px 30px -14px #1a09e8 inset}
+}
+
+section.reg_table {
+  position: fixed;
+  display: flex;
   height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+div.reg_table {
+  box-shadow: 6px 6px 30px -12px #1a09e8 inset, 6px 6px 30px -10px #1a09e8;
+  border-style: solid;
+  border-color: #1a09e8;
+  border-width: 0 1px 1px 0;
+  border-radius: 10px 0 0 10px;
+  margin-right: 20px;
+  background-color: rgba(255, 153, 51, 0.8);
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 40%;
+}
+
+div.reg_table table {
+  height: 70%;
+  width: 70%;
+  padding: 0;
+}
+
+table caption {
+  font-size: 50px;
+  color: #1a09e8;
+}
+
+td input:not([type=submit]) {
+  transition: box-shadow 20s;
+  border-width: 0;
+  width: 100%;
+  height: 70%;
+  font-size: 20px;
+  box-shadow: 6px 6px 30px -12px #1a09e8 inset, -6px -6px 30px -14px #1a09e8 inset;
+}
+
+td input:focus {
+  animation-name: input_shadow;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  outline: none;
+  box-shadow: 6px 6px 30px -12px #1a09e8 inset, -6px -6px 30px -14px #1a09e8 inset;
+}
+
+td.sub_form_td input{
+  background-color: rgba(0,0,0,0);
+  border-width: 0;
+  font-size: 20px;
+  color: #1a09e8;
+  text-shadow: 0 0 rgba(0,0,0,0);
+  transition: text-shadow 1s;
+}
+
+td.sub_form_td input:focus {
+  appearance: none;
+  animation: none;
+  box-shadow: none;
+}
+
+td.sub_form_td input:hover {
+  text-shadow: 1px 1px 5px #1a09e8;
+  cursor: pointer;
+}
+
+td.sub_form_td a {
+  text-decoration: none;
+  font-size: 22px;
+  color: #5cb85c;
+  text-shadow: 0 0 rgba(0,0,0,0);
+  transition: text-shadow 1s;
+}
+
+td.sub_form_td a:hover {
+  text-shadow: 1px 1px 5px #5cb85c;
+}
+
+div.disp_all_users {
+  box-shadow: 0 6px 30px -12px #1a09e8 inset, -6px 0px 30px -12px #1a09e8 inset,  -6px 6px 30px -10px #1a09e8;
+  background-color: rgba(255, 153, 51, 0.8);
+  border-style: solid;
+  border-color: #1a09e8;
+  border-width: 0 0 1px 1px;
+  border-radius: 0 10px 10px 0;
+  height: 70%;
+  width: 10%;
+}
+
+div.disp_all_users a {
+  text-decoration: none;
+  font-size: 22px;
+  color: #5cb85c;
+  text-shadow: 0 0 rgba(0,0,0,0);
+  transition: text-shadow 1s;
+  display: block;
 }
