@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,15 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ki*0nurs6*t9ln1s^u6u%=kyi=qs)s=i7f3f^29)61(xsku_nb'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = [
-    'artem010191.pythonanywhere.com',
-    'localhost',
-]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda text: [res for res in text.split(',')])
 
 
 # Application definition
@@ -42,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,11 +82,11 @@ DATABASES = {
         'OPTION': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
-        'NAME': 'my_db',
+        'NAME': config('DB_NAME'),
         'HOST': '',
-        'PASSWORD': 'root',
+        'PASSWORD': config('DB_PASSWORD'),
         'PORT': '',
-        'USER': 'root',
+        'USER': config('DB_USER'),
     }
 }
 
